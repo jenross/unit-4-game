@@ -46,15 +46,23 @@ $(".crystal-images").on("click", function() {
     crystalValue = parseInt(crystalValue);
 
     userPoints += crystalValue;
-
-    alert("New score: " + userPoints);
+    $("#total-score").text("Your score: " + userPoints);
+    console.log(userPoints);
 
     if (userPoints === winningNumber) {
         alert("You win!");
+        wins++;
+        $("#wins").text("Wins: " + wins);
+        initialize();
       }
 
     else if (userPoints >= winningNumber) {
         alert("You lose!!");
+        losses++;
+        $("#losses").text("Losses: " + losses);
+        initialize();
       }
 
 });
+
+initialize();
