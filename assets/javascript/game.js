@@ -1,68 +1,70 @@
-//Variables
+$(document).ready(function() {  
 
-let userPoints = 0;
-$("#total-score").text("Your score: " + userPoints);
-let wins= 0;
-$("#wins").text("Wins: " + wins);
-let losses= 0;
-$("#losses").text("Losses: " + losses);
-let allCrystals = ["assets/images/Crystals-01.png", "assets/images/Crystals-02.png", "assets/images/Crystals-03.png", "assets/images/Crystals-04.png"];
+  //Variables
+
+  let userPoints = 0;
+  $("#total-score").text("Your score: " + userPoints);
+  let wins= 0;
+  $("#wins").text("Wins: " + wins);
+  let losses= 0;
+  $("#losses").text("Losses: " + losses);
+  let allCrystals = ["assets/images/Crystals-01.png", "assets/images/Crystals-02.png", "assets/images/Crystals-03.png", "assets/images/Crystals-04.png"];
 
 //Functions 
 
-//start and reset game 
-function initialize() {
-
-  userPoints = 0;
-  $("#total-score").text("Your score: " + userPoints);
-
-  let winningNumber = Math.floor(Math.random() * 101 + 19);
-  $("#target-number").text(winningNumber);
-  console.log(winningNumber);
-
-  genCrystalValues();
-}
-
-//Dynamically updates each crystal and assigns it a random value
-function genCrystalValues() {
+  function genCrystalValues() {
   
-  for (let i = 0; i < allCrystals.length; i++) {
+    for (let i = 0; i < allCrystals.length; i++) {
 
-    let imageCrystal = $("<img>");
+      let imageCrystal = $("<img>");
 
-    imageCrystal.addClass("crystal-images");
+      imageCrystal.addClass("crystal-images");
 
-    imageCrystal.attr("src", allCrystals[i]);
+      imageCrystal.attr("src", allCrystals[i]);
 
-    imageCrystal.attr("data-crystalvalue", Math.floor(Math.random() * 12) + 1);
+      imageCrystal.attr("data-crystalvalue", Math.floor(Math.random() * 12) + 1);
 
-    $("#crystals").append(imageCrystal);
+      $("#crystals").append(imageCrystal);
+    }
   }
-}
 
-//On-click functions 
-$(".crystal-images").on("click", function() {
-    let crystalValue = ($(this).attr("data-crystalvalue"));
-    crystalValue = parseInt(crystalValue);
+  function initialize() {
 
-    userPoints += crystalValue;
+    userPoints = 0;
     $("#total-score").text("Your score: " + userPoints);
-    console.log(userPoints);
 
-    if (userPoints === winningNumber) {
+    let winningNumber = Math.floor(Math.random() * 101 + 19);
+    $("#target-number").text(winningNumber);
+    console.log(winningNumber);
+ 
+    $(".crystal-images").on("click", function() {
+      let crystalValue = ($(this).attr("data-crystalvalue"));
+      crystalValue = parseInt(crystalValue);
+
+      userPoints += crystalValue;
+      $("#total-score").text("Your score: " + userPoints);
+      console.log(userPoints);
+
+      if (userPoints === winningNumber) {
         alert("You win!");
         wins++;
         $("#wins").text("Wins: " + wins);
+        $("#crystals").empty();
+        genCrystalValues();
         initialize();
       }
 
-    else if (userPoints >= winningNumber) {
+      else if (userPoints > winningNumber) {
         alert("You lose!!");
         losses++;
         $("#losses").text("Losses: " + losses);
+        $("#crystals").empty();
+        genCrystalValues();
         initialize();
       }
 
+    });
+  }
+  genCrystalValues();
+  initialize();
 });
-
-initialize();
