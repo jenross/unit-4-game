@@ -1,14 +1,32 @@
 //Variables
 
 let userPoints = 0;
-let numbers = [19, 20, 21, 22];
-let incrementNumbers = numbers[Math.round(Math.random())];
+$("#total-score").text("Your score: " + userPoints);
+let wins= 0;
+$("#wins").text("Wins: " + wins);
+let losses= 0;
+$("#losses").text("Losses: " + losses);
 let allCrystals = ["assets/images/Crystals-01.png", "assets/images/Crystals-02.png", "assets/images/Crystals-03.png", "assets/images/Crystals-04.png"];
 
-$("#target-number").text(winningNumber);
+//Functions 
+
+//start and reset game 
+function initialize() {
+
+  userPoints = 0;
+  $("#total-score").text("Your score: " + userPoints);
+
+  let winningNumber = Math.floor(Math.random() * 101 + 19);
+  $("#target-number").text(winningNumber);
+  console.log(winningNumber);
+
+  genCrystalValues();
+}
 
 //Dynamically updates each crystal and assigns it a random value
-for (let i = 0; i < numbers.length; i++) {
+function genCrystalValues() {
+  
+  for (let i = 0; i < allCrystals.length; i++) {
 
     let imageCrystal = $("<img>");
 
@@ -20,6 +38,7 @@ for (let i = 0; i < numbers.length; i++) {
 
     $("#crystals").append(imageCrystal);
   }
+}
 
 //On-click functions 
 $(".crystal-images").on("click", function() {
