@@ -13,7 +13,7 @@ for (let i = 0; i < numbers.length; i++) {
 
     imageCrystal.addClass("crystal-images");
 
-    imageCrystal.attr("src", "assets/images/crystal-1.jpg");
+    imageCrystal.attr("src", "assets/images/Crystals-01.png");
 
     imageCrystal.attr("data-crystalvalue", numbers[i]);
 
@@ -30,14 +30,10 @@ $(".crystal-images").on("click", function() {
     alert("New score: " + userPoints);
 
     if (userPoints === winningNumber) {
-
-        // If the numbers match, user wins
         alert("You win!");
       }
 
     else if (userPoints >= winningNumber) {
-
-        // Then they are alerted with a loss.
         alert("You lose!!");
       }
 
