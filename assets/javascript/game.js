@@ -3,19 +3,20 @@
 let userPoints = 0;
 let numbers = [19, 20, 21, 22];
 let incrementNumbers = numbers[Math.round(Math.random())];
-let winningNumber = 22;
+let allCrystals = ["assets/images/Crystals-01.png", "assets/images/Crystals-02.png", "assets/images/Crystals-03.png", "assets/images/Crystals-04.png"];
 
-$("#number-to-guess").text(winningNumber);
+$("#target-number").text(winningNumber);
 
+//Dynamically updates each crystal and assigns it a random value
 for (let i = 0; i < numbers.length; i++) {
 
     let imageCrystal = $("<img>");
 
     imageCrystal.addClass("crystal-images");
 
-    imageCrystal.attr("src", "assets/images/Crystals-01.png");
+    imageCrystal.attr("src", allCrystals[i]);
 
-    imageCrystal.attr("data-crystalvalue", numbers[i]);
+    imageCrystal.attr("data-crystalvalue", Math.floor(Math.random() * 12) + 1);
 
     $("#crystals").append(imageCrystal);
   }
