@@ -4,16 +4,7 @@
 
 body {
     background-color: black;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-h1 {
-    color: white; 
-    font-size: 45px;
-    border-bottom: 1px solid grey;
-    padding: 20px;
-    width: 100%;
-    text-align: center;
+    font-family: 'Averia Serif Libre', cursive;
 }
 
 h2 {
@@ -28,4 +19,28 @@ h2 {
 
 img {
     border: 1px solid grey; 
+}
+
+p {
+    font-size: 25px; 
+    color: white;
+}
+
+#directions {
+    font-size: 35px; 
+    color: silver;
+}
+
+#header-image {
+    width: 700px;
+    height: 275px;
+    border: none; 
+}
+
+.crystal-images:hover {
+    cursor: pointer;
+}
+
+.crystal-images {
+    padding: 10px; 
 }

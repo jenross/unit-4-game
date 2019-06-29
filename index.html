@@ -4,34 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <meta name="description" content="Play a crystal collector game and hit the target number to win.">
+    <meta name="author" content="Jennifer Ross">
     <title>Crystals Collector Game</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre&display=swap" rel="stylesheet">
 </head>
 <body class="d-flex flex-column h-100">
     <main role="main" class="flex-shrink-0"></main>
-    <h1 class="mt-3 mx-auto">Crystal Collector Game</h1>
-
-    <h2 class="mt-5 mx-auto">Your target: <span id="target-number"></span></h2>
-
-    <div class="container mt-5 d-flex justify-content-center" id="crystals">
-    </div>  
-
-    <div class="container">
-        <p id="wins"></p>
-        <p id="losses"></p>
-    </div>
-
-    <div class="container">
-        <p id="total-score"></p>
-    </div>
-
+    <!--Main container-->
+        <div class="container-fluid px-lg-5">
+            <!--Header image-->
+            <div class="row">
+                <div class="col text-center">
+                <img class="img-fluid" id="header-image" src="assets/images/cc_image_header.png">
+                </div>
+            </div>
+            <!--Directions for game/Win and loss messages will also be displayed here-->
+            <div class="row mx-lg-n5 mt-3">
+                    <div class="col py-3 px-lg-5 text-center">
+                        <p id="directions">Click each crystal to sell it and earn points. Walt expects you to hit the target amount every round! Each batch will sell for different amounts and the target amount will change.</p>
+                    </div>
+            </div>
+            <!--Target-->
+            <div class="row">
+                <div class="col text-center">
+                <h2 class="mt-3">Your target: <span id="target-number"></span></h2>
+                </div>
+            </div>
+            <!--Crystals-->
+            <div class="row">
+                <div class="col mt-5 text-center">
+                    <div id="crystal-container">
+                        <img class="crystal-images" id="crystal-one" src="assets/images/Crystals-01.png" alt="first crystal">
+                        <img class="crystal-images" id="crystal-two" src="assets/images/Crystals-02.png" alt="second crystal">
+                        <img class="crystal-images" id="crystal-three" src="assets/images/Crystals-03.png" alt="third crystal">
+                        <img class="crystal-images" id="crystal-four" src="assets/images/Crystals-04.png" alt="fourth crystal">
+                    </div>
+                </div> 
+            </div> 
+            <!--Wins/Losses/Score-->
+            <div class="row mx-lg-n5 mt-3">
+                <div class="col py-3 px-lg-5">
+                    <p class="p-2" id="total-score"></p>
+                    <p class="p-2" id="wins"></p>
+                    <p class="p-2" id="losses"></p>
+                </div>
+            </div>
+        </div>
     </main>
     <footer role="contentinfo" class="footer mt-auto mx-auto py-3">
             <div class="container">
-                <span class="text-muted">Created by Jennifer Ross, Copyright © 2019</span>
+                <span class="text-muted">Copyright © 2019 Jennifer Ross</span>
             </div>
     </footer>
     <!--JavaScript-->

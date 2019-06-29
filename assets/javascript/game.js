@@ -1,64 +1,70 @@
-$(document).ready(function() {  
+$(document).ready(function() {
 
-  //Variables
-
-  let userPoints = 0;
-  $("#total-score").text("Your score: " + userPoints);
   let wins= 0;
   $("#wins").text("Wins: " + wins);
+
   let losses= 0;
   $("#losses").text("Losses: " + losses);
-  let allCrystals = ["assets/images/Crystals-01.png", "assets/images/Crystals-02.png", "assets/images/Crystals-03.png", "assets/images/Crystals-04.png"];
 
-//Functions 
+  let userSales = 0;
+  $("#total-score").text("Your sales: $" + userSales);
 
-  function genCrystalValues() {
+  let clickSound = new Audio("assets/sound/cha-ching.wav");
+
+  let crystalOne = Math.floor(Math.random() * 12) + 1;
+  let crystalTwo = Math.floor(Math.random() * 12) + 1;
+  let crystalThree = Math.floor(Math.random() * 12) + 1;
+  let crystalFour = Math.floor(Math.random() * 12) + 1;
   
-    for (let i = 0; i < allCrystals.length; i++) {
-
-      let imageCrystal = $("<img>");
-
-      imageCrystal.addClass("crystal-images");
-
-      imageCrystal.attr("src", allCrystals[i]);
-
-      imageCrystal.attr("data-crystalvalue", Math.floor(Math.random() * 12) + 1);
-
-      $("#crystals").append(imageCrystal);
-    }
+  function genCrystalValues() {
+    $("#crystal-one").attr("data-crystalvalue", crystalOne);
+    $("#crystal-two").attr("data-crystalvalue", crystalTwo);
+    $("#crystal-three").attr("data-crystalvalue", crystalThree);
+    $("#crystal-four").attr("data-crystalvalue", crystalFour);
   }
 
   function initialize() {
 
-    userPoints = 0;
-    $("#total-score").text("Your score: " + userPoints);
-
-    let winningNumber = Math.floor(Math.random() * 101 + 19);
-    $("#target-number").text(winningNumber);
-    console.log(winningNumber);
+    let userSales = 0;
+    $("#total-score").text("Your sales: $" + userSales);
+  
+    let winningAmount = Math.floor(19 + Math.random() * (120 + 1 - 19));
+    $("#target-number").text("$" + winningAmount);
+    console.log(winningAmount);
  
     $(".crystal-images").on("click", function() {
+
+      $("#directions").text("");
+
+      clickSound.play();
+
       let crystalValue = ($(this).attr("data-crystalvalue"));
       crystalValue = parseInt(crystalValue);
 
-      userPoints += crystalValue;
-      $("#total-score").text("Your score: " + userPoints);
-      console.log(userPoints);
+      userSales += crystalValue;
+      $("#total-score").text("Your sales: $" + userSales);
+      console.log(userSales);
 
-      if (userPoints === winningNumber) {
-        alert("You win!");
+      if (userSales === winningAmount) {
+        $("#directions").text("Walt will be pleased.");
         wins++;
         $("#wins").text("Wins: " + wins);
-        $("#crystals").empty();
+        $("#crystal-one").empty();
+        $("#crystal-two").empty();
+        $("#crystal-three").empty();
+        $("#crystal-four").empty();
         genCrystalValues();
         initialize();
       }
 
-      else if (userPoints > winningNumber) {
-        alert("You lose!!");
+      else if (userSales > winningAmount) {
+        $("#directions").text("This won't be pretty.");
         losses++;
         $("#losses").text("Losses: " + losses);
-        $("#crystals").empty();
+        $("#crystal-one").empty();
+        $("#crystal-two").empty();
+        $("#crystal-three").empty();
+        $("#crystal-four").empty();
         genCrystalValues();
         initialize();
       }
